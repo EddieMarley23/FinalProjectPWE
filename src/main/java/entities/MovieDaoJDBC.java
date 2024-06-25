@@ -71,7 +71,7 @@ public class MovieDaoJDBC implements MovieDao {
 		st.setString(2, movie.getDirector());
 		st.setString(3, movie.getGenre());
 		st.setDouble(4, movie.getAssessment());
-		st.setInt(4, movie.getQtdAssessment());
+		st.setInt(5, movie.getQtdAssessment());
 
 		int rowsAffected = st.executeUpdate();
 		if (rowsAffected > 0) {
@@ -128,13 +128,23 @@ public class MovieDaoJDBC implements MovieDao {
 	public List<Movie> ListMoviesSearch(List<Movie> movies, Movie movie) throws SQLException {
 
 		try {
+			if (movie.getTitle() != "") {
 			st = conn.prepareStatement("select * from Movie Where movieTitle = ?");
-			if (movie.getTitle() != null) { // Verifique se o título está presente
 				st.setString(1, movie.getTitle());
-			} else {
-
-				return movies;
-			}
+				
+			} else if(movie.getDirector() !=""){
+				
+				st = conn.prepareStatement("select * from Movie Where movieDirector = ?");
+				st.setString(1, movie.getDirector());
+				
+				}else if(movie.getAssessment() !=11.00000000000000){
+					System.out.println("Fui pesquisar a AVALIAÇÂO");
+					st = conn.prepareStatement("select * from Movie where round(movieAssessment / movieQtdAssessment,1) >=?");
+					st.setDouble(1, movie.getAssessment());
+					
+					
+				}
+				
 
 			try (ResultSet rs = st.executeQuery()) {
 				while (rs.next()) {
@@ -147,16 +157,16 @@ public class MovieDaoJDBC implements MovieDao {
 					movies.add(movieDb);
 				}
 
-				for(Movie obj: movies) {
-					System.out.println("Título for each: "+ obj.getTitle());
-				}
+	
 				return movies;
 			}
 
-		} catch (SQLException e) {
-			// Registrar a exceção em um log ou realizar outra ação de recuperação de erro
-			System.err.println("Erro ao executar a consulta: " + e.getMessage());
-			throw e; // Repassar a exceção para o código que chama a função
-		}
+		}catch(
+
+	SQLException e)
+	{
+		
+		System.err.println("Erro ao executar a consulta: " + e.getMessage());
+		throw e; 
 	}
-}
+}}

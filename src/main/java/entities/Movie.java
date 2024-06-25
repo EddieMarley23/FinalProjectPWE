@@ -43,7 +43,7 @@ public class Movie {
 		Genre = genre;
 	}
 
-	public Double getAssessment() {
+	public  Double getAssessment() {
 		return Assessment;
 	}
 
@@ -65,7 +65,12 @@ public class Movie {
 	}
 	
 	public double CalculatedAverage() {
-		return Assessment /QtdAssessment;
+		
+		if(QtdAssessment == 0) {
+			return 0.0;
+		}else {
+			return Assessment /(double)QtdAssessment;
+		}
 	}
 
 	

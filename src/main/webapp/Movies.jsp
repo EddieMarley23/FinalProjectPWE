@@ -12,17 +12,27 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 </head>
+
+<nav><%
+String username = (String) session.getAttribute("userName");
+if (username != null) {
+  out.print("Bem vindo " + username);
+  if (username.equals("eddie.sys")) {%>
+  
+  <form action="ShowMovies" method ="get">
+  <input type="hidden" name="action" value="regMovieToDirect">
+  <button type="submit">Cadastrar Filmes</button>
+  
+  </form>
+<%}
+} else {
+  response.sendRedirect("Login.jsp");
+}
+%></nav>
+
 <body>
 
-	<%
-	String username = (String) session.getAttribute("userName");
-	if (username == null) {
-
-		response.sendRedirect("Login.jsp");
-	} else {
-		out.print("Bem vindo " + username);
-	}
-	%>
+	
 
 	<br>
 
@@ -88,7 +98,7 @@
 
 	<h2>Busca Personalizada</h2>
 	
-	<h4>Atenção preencha 1 campo ou todos os campos para a pesquisa</h4>
+	<h4>Atenção preencha apenas 1 dos campos para fazer a pesquisa</h4>
 
 	<form action = "ShowMovies" method="get">
 	<input type="hidden" name="action" value="Search">  
@@ -96,6 +106,8 @@
 			name="movieTitleSearch" placeholder="Insira o título do filme"> <label
 			for="movieDirectorSearch">Diretor:</label> <input type="text" id="movieDirectorSearch"
 			name="movieDirectorSearch" placeholder="Insira o nome do diretor"> 
+			<label for="movieAssessment">Média de Avaliações:</label> <input type="text" id="movieAssessment"
+			name="movieAssessment" placeholder="Insira 'Média' de Avaliação"> 
 
 		<button type="submit">Pesquisar</button>
 	</form>
@@ -136,7 +148,7 @@
 
 
 
-	<form action="Deslogar.jsp">
+	<form action="LogOut.jsp">
 		<input type="submit" value="Deslogar">
 
 	</form>

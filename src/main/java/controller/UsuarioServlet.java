@@ -3,6 +3,8 @@ package controller;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import entities.SysAdmin;
+import entities.SysAdminDaoJDBC;
 import entities.User;
 import entities.UserDaoJDBC;
 import jakarta.servlet.ServletException;
@@ -17,29 +19,27 @@ public class UsuarioServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+			throws ServletException, IOException, NullPointerException {
 
-		String action = request.getParameter("action"); 
+		String action = request.getParameter("action");
 		UserDaoJDBC userDao = new UserDaoJDBC();
-		
-		
-		
-		if (action != null && action.equals("login")) {
-		
+
+		if (action != null && action.equals("directToAdmin")) {
+			
+			response.sendRedirect("LoginADM.jsp");
+			
+
+		} else if (action != null && action.equals("loginAdmin")) {
+
 			String name = request.getParameter("name");
-			String email = request.getParameter("email");
 			String password = request.getParameter("password");
 
-			User user = new User(name, email, password);
-			
-			
-			
+			SysAdmin sysadmin = new SysAdmin(name, password);
+			SysAdminDaoJDBC sysDao = new SysAdminDaoJDBC();
+			SysAdmin verifiedSys = null;
+
 			try {
-				
-				userDao.authenticateLogin(user);
-				
-	           
-				
+				verifiedSys = sysDao.authenticateLogin(sysadmin);
 			} catch (ClassNotFoundException e) {
 
 				e.printStackTrace();
@@ -48,35 +48,60 @@ public class UsuarioServlet extends HttpServlet {
 				e.printStackTrace();
 			}
 
-			if (user != null) {
-				
-                HttpSession session = request.getSession();
-				session.setAttribute("userName", user.getName());
-				
-			
+			if (verifiedSys != null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("userName", verifiedSys.getName());
 				response.sendRedirect("/Final_ProjectPWE/ShowMovies");
-			} else
-			
+			} else {
 				request.setAttribute("errorMessage", "Login falhou. Email ou senha inválidos.");
+				response.sendRedirect("LoginADM.jsp");
+			}
+
+		} else if (action != null && action.equals("login")) {
+
+			String name = request.getParameter("name");
+			String email = request.getParameter("email");
+			String password = request.getParameter("password");
+
+			User user = new User(name, email, password);
+			User verifiedUser = null;
+
+			try {
+
+				verifiedUser = userDao.authenticateLogin(user);
+
+			} catch (ClassNotFoundException e) {
+
+				e.printStackTrace();
+			} catch (SQLException e) {
+
+				e.printStackTrace();
+			}
+
+			if (verifiedUser != null) {
+				HttpSession session = request.getSession();
+				session.setAttribute("userName", verifiedUser.getName());
+				response.sendRedirect("/Final_ProjectPWE/ShowMovies");
+			} else {
+				request.setAttribute("errorMessage", "Login falhou. Email ou senha inválidos.");
+				response.sendRedirect("Login.jsp");
+			}
 		} else {
-			
+
 			String name = request.getParameter("name");
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
 			User user = new User(name, email, password);
-			
-			
+
 			try {
 				userDao.InsertData(user);
 				response.sendRedirect("Login.jsp");
 			} catch (SQLException e) {
-				
+
 				e.printStackTrace();
 			}
 
 		}
-
-		
 
 	}
 }

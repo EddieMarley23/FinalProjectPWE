@@ -1,0 +1,15 @@
+@charset "UTF-8";
+
+nav button {
+  background-color: #4CAF50; /* Green background */
+  color: white; /* White text */
+  padding: 10px 20px; /* Add some padding */
+  border: none; /* Remove default border */
+  border-radius: 5px; /* Add rounded corners */
+  cursor: pointer; /* Indicate clickable area */
+}
+
+/* Optional hover effect (add if desired) */
+nav button:hover {
+  background-color: #3e8e41; /* Darker green on hover */
+}

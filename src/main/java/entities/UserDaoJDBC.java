@@ -17,10 +17,10 @@ public class UserDaoJDBC implements UserDao {
 		try {
 			conn = DB.getConnection();
 		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
+			
 			e.printStackTrace();
 		}
 	}
@@ -48,27 +48,27 @@ public class UserDaoJDBC implements UserDao {
 		
 
 		st = conn.prepareStatement("SELECT * FROM User WHERE email = ? AND password = ?");
-		// Substitua "Name" pelo nome
-																							// correto da coluna
+		
+																							
 		st.setString(1, user.getEmail());
 		st.setString(2, user.getPassword());
 
 		rs = st.executeQuery();
 
-		// Verifica se há registro de usuário
+		
 		if (rs.next()) {
 			String name = rs.getString("Name"); 
 			String userEmail = rs.getString("email");
 			String userPassword = rs.getString("password");
 		
+			 User authenticatedUser = new User(name, userEmail, userPassword);
 			
 			
 			
-			
-			return user;
+			return authenticatedUser;
 		} else {
 			System.out.println("Nenhum usuário encontrado");
-			return null; // Retorna null se a autenticação falhar
+			return null;
 		}
 
 	}
