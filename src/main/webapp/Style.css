@@ -1,15 +1,171 @@
-@charset "UTF-8";
 
-nav button {
-  background-color: #4CAF50; /* Green background */
-  color: white; /* White text */
-  padding: 10px 20px; /* Add some padding */
-  border: none; /* Remove default border */
-  border-radius: 5px; /* Add rounded corners */
-  cursor: pointer; /* Indicate clickable area */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
-/* Optional hover effect (add if desired) */
-nav button:hover {
-  background-color: #3e8e41; /* Darker green on hover */
+/* Estilo geral da página */
+body {
+    font-family: Arial, sans-serif;
+    background-color: rgb(194, 0, 0);
+    padding: 20px;
 }
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.main-title {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* Estilo do formulário de login */
+.login-form {
+    max-width: 400px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #f9f9f9;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+}
+
+.login-form h2 {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: 8px;
+}
+
+.form-group input {
+    width: 100%;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.login-form button {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.login-form button:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo da lista de filmes */
+.container-filmes {
+    margin-top: 20px;
+}
+
+.movie-item {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.movie-item h2 {
+    margin-bottom: 5px;
+}
+
+.movie-item p {
+    margin-bottom: 3px;
+}
+
+/* Estilo da seção de avaliação */
+.avaliacao {
+    margin-top: 20px;
+}
+
+.avaliacao h2 {
+    margin-bottom: 10px;
+}
+
+.avaliacao label {
+    margin-right: 10px;
+}
+
+.avaliacao input[type="text"],
+.avaliacao input[type="radio"] {
+    margin-bottom: 10px;
+}
+
+/* Estilo da seção de busca */
+.search {
+    margin-top: 20px;
+}
+
+.search h2 {
+    margin-bottom: 10px;
+}
+
+.search h4 {
+    margin-bottom: 10px;
+    color: #666;
+}
+
+.search input[type="text"] {
+    margin-bottom: 10px;
+    padding: 8px;
+    width: 100%;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.search button {
+    padding: 10px;
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.search button:hover {
+    background-color: #218838;
+}
+
+/* Estilo para a lista de filmes da pesquisa */
+.container-filmes2 {
+    margin-top: 20px;
+}
+
+.movie-item2 {
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+.movie-item2 h2 {
+    margin-bottom: 5px;
+}
+
+.movie-item2 p {
+    margin-bottom: 3px;
+}
+

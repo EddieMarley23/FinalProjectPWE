@@ -1,5 +1,7 @@
 package entities;
 
+import java.text.DecimalFormat;
+
 public class Movie {
 
 	private String Title;
@@ -7,7 +9,6 @@ public class Movie {
 	private String Genre;
 	private Double Assessment = 0.0;
 	private Integer QtdAssessment = 0;
-	
 
 	public Movie() {
 
@@ -43,7 +44,7 @@ public class Movie {
 		Genre = genre;
 	}
 
-	public  Double getAssessment() {
+	public Double getAssessment() {
 		return Assessment;
 	}
 
@@ -63,16 +64,16 @@ public class Movie {
 		Assessment += assessment;
 		QtdAssessment += 1;
 	}
-	
+
 	public double CalculatedAverage() {
-		
-		if(QtdAssessment == 0) {
+
+		if (QtdAssessment == 0) {
 			return 0.0;
-		}else {
-			return Assessment /(double)QtdAssessment;
+		} else {
+			 
+			
+			return Assessment / QtdAssessment;
 		}
 	}
-
-	
 
 }

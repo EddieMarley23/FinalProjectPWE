@@ -176,8 +176,10 @@ public class ShowMovies extends HttpServlet {
 			} else {
 				System.out.println("Movies é null");
 			}
-
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/Movies.jsp");
+			
+			
+			
+			RequestDispatcher dispatcher = request.getRequestDispatcher("RedirectServlet");
 			dispatcher.forward(request, response);
 
 		} else {
