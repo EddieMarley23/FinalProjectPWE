@@ -1,11 +1,14 @@
 package controller;
 
+import java.io.IOException;
+
+import com.mysql.cj.xdevapi.Session;
+
 import jakarta.servlet.ServletException;
-import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
-import java.io.IOException;
+import jakarta.servlet.http.HttpSession;
 
 
 public class RedirectServlet extends HttpServlet {
@@ -14,7 +17,21 @@ public class RedirectServlet extends HttpServlet {
    
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		response.sendRedirect("/Final_ProjectPWE/ShowMovies");
+		String action = request.getParameter("action");
+		if(action.equals("LogOut")) {
+			
+			HttpSession session = request.getSession();
+			session.invalidate();
+
+
+
+			response.sendRedirect("/Final_ProjectPWE/Login.jsp");
+			
+		}else {
+			response.sendRedirect("/Final_ProjectPWE/ShowMovies");
+		}
+		
+		
 	}
 
 }

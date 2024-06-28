@@ -19,18 +19,25 @@
             <label for="password">Senha:</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <input type="submit" value="Enviar">
+        <div class = "form-group">
+        <button type="submit"> Enviar</button>
+        </div>
     </form>
 
     <form action="UsuarioServlet" method="post" class="login-form">
+    <div class = "form-group">
         <input type="hidden" name="action" value="directToAdmin">
-        <input type="submit" value="Login Admin">
+        <button type="submit">Login Admin</button>
+         </div>
     </form>
 
     <form action="RegisterUser.jsp" class="login-form">
+    <div class = "form-group">
         <input type="hidden" name="action" value="directToAdmin">
-        <input type="submit" value="Realizar Cadastro">
+        <button type="submit">Realizar Cadastro</button>
+        </div>
     </form>
+    
 </div>
 </body>
 </html>

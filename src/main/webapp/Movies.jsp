@@ -23,13 +23,14 @@
             %>
         </h1>
     </header>
-    <form action="ShowMovies" method="get" style="display: inline-block;">
+    <form action="ShowMovies" method="get" class="login-form">
         <input type="hidden" name="action" value="regMovieToDirect">
         <button type="submit">Cadastrar Filmes</button>
     </form>
     <br>
     <% } %>
-    <form action="LogOut.jsp">
+    <form action="RedirectServlet" class="login-form" method="get" Style="display: inline-block";>
+    <input type="hidden" name="action" value="LogOut">
         <button type="submit">Deslogar</button>
     </form>
     <% } else {
@@ -59,7 +60,7 @@
         </table>
     </div>
     <br>
-    <div class="avaliacao">
+    <div class="search">
         <h2>Faça a sua Avaliação</h2>
         <form action="ShowMovies" method="get">
             <input type="hidden" name="action" value="update">

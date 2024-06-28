@@ -137,7 +137,7 @@ public class MovieDaoJDBC implements MovieDao {
 				st = conn.prepareStatement("select * from Movie Where movieDirector = ?");
 				st.setString(1, movie.getDirector());
 				
-				}else if(movie.getAssessment() !=11.00000000000000){
+				}else if(movie.getAssessment() >= 0 && movie.getAssessment() <= 10.0 ){
 					System.out.println("Fui pesquisar a AVALIAÇÂO");
 					st = conn.prepareStatement("select * from Movie where round(movieAssessment / movieQtdAssessment,1) >=?");
 					st.setDouble(1, movie.getAssessment());

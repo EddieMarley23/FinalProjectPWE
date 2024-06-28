@@ -10,7 +10,7 @@
 <div class="container">
     <h2>Faça Login Como Administrador</h2>
 
-    <form action="UsuarioServlet" method="post" class="admin-login-form">
+    <form action="UsuarioServlet" method="post" class="login-form">
         <input type="hidden" name="action" value="loginAdmin">
         <div class="form-group">
             <label for="name">Nome:</label>
@@ -20,7 +20,7 @@
             <label for="password">Senha:</label>
             <input type="password" id="password" name="password" required>
         </div>
-        <input type="submit" value="Enviar">
+        <button type="submit">Enviar</button>
     </form>
 
 </div>
