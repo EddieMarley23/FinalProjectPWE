@@ -7,7 +7,7 @@ import java.sql.SQLException;
 
 import db.DB;
 
-public class SysAdminDaoJDBC {
+public class SysAdminDaoJDBC implements SysAdminDao {
 	
 	private Connection conn;
 	PreparedStatement st = null;
@@ -25,6 +25,7 @@ public class SysAdminDaoJDBC {
 		}
 	}
 	
+@Override	
 public SysAdmin authenticateLogin(SysAdmin admin) throws SQLException, ClassNotFoundException {
 		
 		

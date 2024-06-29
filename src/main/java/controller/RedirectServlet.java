@@ -25,7 +25,7 @@ public class RedirectServlet extends HttpServlet {
 
 
 
-			response.sendRedirect("/Final_ProjectPWE/Login.jsp");
+			response.sendRedirect("/Final_ProjectPWE/index.jsp");
 			
 		}else {
 			response.sendRedirect("/Final_ProjectPWE/ShowMovies");

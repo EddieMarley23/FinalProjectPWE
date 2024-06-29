@@ -111,9 +111,7 @@ public class MovieDaoJDBC implements MovieDao {
 				movies.add(movieDb);
 			}
 
-			for (Movie obj : movies) {
-				System.out.println(obj.getDirector());
-			}
+			
 
 			return movies;
 

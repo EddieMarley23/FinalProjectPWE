@@ -9,7 +9,7 @@
 <body>
 <div class="container">
     <h2>Formulário de Login</h2>
-    <form action="UsuarioServlet" method="post" class="login-form">
+    <form action="/Final_ProjectPWE/UsuarioServlet" method="post" class="login-form">
         <input type="hidden" name="action" value="login">
         <div class="form-group">
             <label for="email">Email:</label>
@@ -24,16 +24,16 @@
         </div>
     </form>
 
-    <form action="UsuarioServlet" method="post" class="login-form">
+    <form action="/Final_ProjectPWE/UsuarioServlet" method="post" class="login-form">
     <div class = "form-group">
         <input type="hidden" name="action" value="directToAdmin">
         <button type="submit">Login Admin</button>
          </div>
     </form>
 
-    <form action="RegisterUser.jsp" class="login-form">
+    <form action="/Final_ProjectPWE/UsuarioServlet" class="login-form" method ="post">
     <div class = "form-group">
-        <input type="hidden" name="action" value="directToAdmin">
+        <input type="hidden" name="action" value="directToUser">
         <button type="submit">Realizar Cadastro</button>
         </div>
     </form>

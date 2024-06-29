@@ -31,7 +31,7 @@
     </form>
     
              
-    <form action="Login.jsp" class ="login-form" >
+    <form action="index.jsp" class ="login-form" >
     <div class="form-group">
      <button type="submit">Fazer Login</button>
      </div>

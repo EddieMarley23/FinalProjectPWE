@@ -10,7 +10,7 @@
 <div class="container">
     <h2>Faça Login Como Administrador</h2>
 
-    <form action="UsuarioServlet" method="post" class="login-form">
+    <form action="/Final_ProjectPWE/UsuarioServlet" method="post" class="login-form">
         <input type="hidden" name="action" value="loginAdmin">
         <div class="form-group">
             <label for="name">Nome:</label>

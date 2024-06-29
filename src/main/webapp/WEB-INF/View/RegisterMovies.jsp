@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Lista de Filmes</title>
+<title>Registrar Filmes</title>
 <link rel="stylesheet" href="Style.css">
 </head>
 <body>

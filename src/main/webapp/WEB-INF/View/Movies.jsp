@@ -23,18 +23,18 @@
             %>
         </h1>
     </header>
-    <form action="ShowMovies" method="get" class="login-form">
+    <form action="/Final_ProjectPWE/ShowMovies" method="get" class="login-form">
         <input type="hidden" name="action" value="regMovieToDirect">
         <button type="submit">Cadastrar Filmes</button>
     </form>
     <br>
     <% } %>
-    <form action="RedirectServlet" class="login-form" method="get" Style="display: inline-block";>
+    <form action="/Final_ProjectPWE/RedirectServlet" class="login-form" method="get" Style="display: inline-block";>
     <input type="hidden" name="action" value="LogOut">
         <button type="submit">Deslogar</button>
     </form>
     <% } else {
-        response.sendRedirect("Login.jsp");
+        response.sendRedirect("index.jsp");
         }
     %>
     <br>
@@ -62,7 +62,7 @@
     <br>
     <div class="search">
         <h2>Faça a sua Avaliação</h2>
-        <form action="ShowMovies" method="get">
+        <form action="/Final_ProjectPWE/ShowMovies" method="get">
             <input type="hidden" name="action" value="update">
             <label for="movieTitleForm">Nome do Filme:</label>
             <input type="text" id="movieTitleForm" name="movieTitleForm" required>
@@ -94,7 +94,7 @@
     <div class="search">
         <h2>Busca Personalizada</h2>
         <h4>Atenção preencha apenas 1 dos campos para fazer a pesquisa</h4>
-        <form action="ShowMovies" method="get">
+        <form action="/Final_ProjectPWE/ShowMovies" method="get">
             <input type="hidden" name="action" value="Search">
             <label for="movieTitleSearch">Título:</label>
             <input type="text" id="movieTitleSearch" name="movieTitleSearch" placeholder="Insira o título do filme">

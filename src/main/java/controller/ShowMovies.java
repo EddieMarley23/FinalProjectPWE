@@ -60,7 +60,7 @@ public class ShowMovies extends HttpServlet {
 				System.out.println("Movies é null");
 			}
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/RegisterMovies.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/View/RegisterMovies.jsp");
 			dispatcher.forward(request, response);
 			
 			
@@ -82,8 +82,8 @@ public class ShowMovies extends HttpServlet {
 		} else {
 			System.out.println("Movies é null");
 		}
-
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/RegisterMovies.jsp");
+		
+		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/View/RegisterMovies.jsp");
 		dispatcher.forward(request, response);
 			
 			
@@ -146,7 +146,7 @@ public class ShowMovies extends HttpServlet {
 				System.out.println("Movies é null");
 			}
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/Movies.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/View/Movies.jsp");
 			dispatcher.forward(request, response);
 
 		} else if (action != null && action.equals("update")) {
@@ -167,9 +167,6 @@ public class ShowMovies extends HttpServlet {
 
 			List<Movie> listMovies = movieDao.ListMovies(movies);
 
-			for (Movie obj : listMovies) {
-				System.out.println(obj.getDirector());
-			}
 
 			if (movies != null) {
 				request.setAttribute("movies", listMovies);
@@ -198,7 +195,7 @@ public class ShowMovies extends HttpServlet {
 				System.out.println("Movies é null");
 			}
 
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/Movies.jsp");
+			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/View/Movies.jsp");
 			dispatcher.forward(request, response);
 		}
 
