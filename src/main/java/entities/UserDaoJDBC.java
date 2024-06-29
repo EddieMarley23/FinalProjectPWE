@@ -31,7 +31,7 @@ public class UserDaoJDBC implements UserDao {
 		st = conn.prepareStatement("INSERT INTO user (name, email, password) VALUES (?, ?, ?)");
 		st.setString(1, user.getName());
 		st.setString(2, user.getEmail());
-		st.setString(3, user.getPassword()); // Hash da senha antes de armazenar
+		st.setLong(3, user.hashCode()); 
 
 		int rowsAffected = st.executeUpdate();
 		if (rowsAffected > 0) {
@@ -51,7 +51,7 @@ public class UserDaoJDBC implements UserDao {
 		
 																							
 		st.setString(1, user.getEmail());
-		st.setString(2, user.getPassword());
+		st.setLong(2, user.hashCode());
 
 		rs = st.executeQuery();
 

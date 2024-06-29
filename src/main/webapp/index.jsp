@@ -24,7 +24,7 @@
         </div>
     </form>
 
-    <form action="/Final_ProjectPWE/UsuarioServlet" method="post" class="login-form">
+    <form action="/webapp" method="post" class="login-form">
     <div class = "form-group">
         <input type="hidden" name="action" value="directToAdmin">
         <button type="submit">Login Admin</button>
