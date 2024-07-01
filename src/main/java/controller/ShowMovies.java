@@ -19,40 +19,17 @@ public class ShowMovies extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 
-		
-
-		
-
-		
-
 		String action = request.getParameter("action");
 
 		MovieDaoJDBC movieDao = new MovieDaoJDBC();
 
-		if(action != null && action.equals("registerMovie")){
-			
-			
-			
-			String movieTitle = request.getParameter("movieTitle");
-			String movieDirector = request.getParameter("movieDirector");
-			String movieGenre = request.getParameter("movieDirector");
-			Movie movie = new Movie(movieTitle, movieDirector, movieGenre);
-			try {
-				movieDao.InsertData(movie);
-			} catch (SQLException e) {
-				
-				e.printStackTrace();
-			}
-			
-			
+		if (action != null && action.equals("registerMovie")) {
+
+			InstantiatingAndInsertingData(request, movieDao);
 
 			List<Movie> movies2 = new ArrayList<>();
 
 			List<Movie> listMovies2 = movieDao.ListMovies(movies2);
-
-			for (Movie obj : listMovies2) {
-				System.out.println(obj.getDirector());
-			}
 
 			if (listMovies2 != null) {
 				request.setAttribute("movies", listMovies2);
@@ -62,71 +39,25 @@ public class ShowMovies extends HttpServlet {
 
 			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/View/RegisterMovies.jsp");
 			dispatcher.forward(request, response);
-			
-			
-	}else if (action != null && action.equals("regMovieToDirect")) {
-		
-						
-		
 
-		List<Movie> movies2 = new ArrayList<>();
+		} else if (action != null && action.equals("regMovieToDirect")) {
 
-		List<Movie> listMovies2 = movieDao.ListMovies(movies2);
+			List<Movie> movies2 = new ArrayList<>();
 
-		for (Movie obj : listMovies2) {
-			System.out.println(obj.getDirector());
-		}
+			List<Movie> listMovies2 = movieDao.ListMovies(movies2);
 
-		if (listMovies2 != null) {
-			request.setAttribute("movies", listMovies2);
-		} else {
-			System.out.println("Movies é null");
-		}
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/View/RegisterMovies.jsp");
-		dispatcher.forward(request, response);
-			
-			
+			if (listMovies2 != null) {
+				request.setAttribute("movies", listMovies2);
+			} else {
+				System.out.println("Movies é null");
+			}
+
+			RequestDispatcher dispatcher = request.getRequestDispatcher("WEB-INF/View/RegisterMovies.jsp");
+			dispatcher.forward(request, response);
 
 		} else if (action != null && action.equals("Search")) {
-			
-			String movieTitleSearch = request.getParameter("movieTitleSearch");
-			String movieDirectorSearch = request.getParameter("movieDirectorSearch");
-			String movieAssessmentParam = request.getParameter("movieAssessment");
-			
-			
-			    
-			Double movieAssessment = 0.0;
-			
-			if(movieAssessmentParam != null && !movieAssessmentParam.isEmpty()) {
-				movieAssessment = Double.parseDouble(movieAssessmentParam);
-				
-			}else {
-				movieAssessment = 0.0;
-			}
 
-			Movie movie = new Movie();
-
-			movie.setTitle(movieTitleSearch);
-			movie.setDirector(movieDirectorSearch);
-			movie.setAssessment(movieAssessment);
-
-			System.out.println("vALOR RECEBIDO POR movieAssessmentParam "+ movie.getAssessment());
-			List<Movie> movies = new ArrayList<>();
-
-			List<Movie> listMovies = null;
-			
-			try {
-				System.out.println("Fui até a função:");
-				listMovies = movieDao.ListMoviesSearch(movies, movie);
-			} catch (SQLException e) {
-
-				e.printStackTrace();
-			}
-
-			for (Movie obj : listMovies) {
-				System.out.println("Resultado diretor: "+obj.getDirector());
-			}
+			List<Movie> listMovies = InstantiatingObjectAndSearching(request, movieDao);
 
 			if (listMovies != null) {
 				request.setAttribute("searchResult", listMovies);
@@ -138,8 +69,6 @@ public class ShowMovies extends HttpServlet {
 
 			List<Movie> listMovies2 = movieDao.ListMovies(movies2);
 
-			
-
 			if (listMovies2 != null) {
 				request.setAttribute("movies", listMovies2);
 			} else {
@@ -150,44 +79,25 @@ public class ShowMovies extends HttpServlet {
 			dispatcher.forward(request, response);
 
 		} else if (action != null && action.equals("update")) {
-			
-			String movieTitle = request.getParameter("movieTitleForm");
-			String movieAsessmentParam = request.getParameter("Asessment");
 
-			Integer movieAsessment = Integer.parseInt(movieAsessmentParam);
-
-			Movie movie = new Movie();
-
-			movie.setTitle(movieTitle);
-			movie.addAsessment(movieAsessment);
-
-			movieDao.UpdateMovie(movie);
+			UpdatingData(request, movieDao);
 
 			List<Movie> movies = new ArrayList<>();
 
 			List<Movie> listMovies = movieDao.ListMovies(movies);
 
-
 			if (movies != null) {
 				request.setAttribute("movies", listMovies);
-			} else {
-				System.out.println("Movies é null");
 			}
-			
-			
-			
+
 			RequestDispatcher dispatcher = request.getRequestDispatcher("RedirectServlet");
 			dispatcher.forward(request, response);
 
 		} else {
 
-			
-
 			List<Movie> movies2 = new ArrayList<>();
 
 			List<Movie> listMovies2 = movieDao.ListMovies(movies2);
-
-			
 
 			if (listMovies2 != null) {
 				request.setAttribute("movies", listMovies2);
@@ -199,5 +109,66 @@ public class ShowMovies extends HttpServlet {
 			dispatcher.forward(request, response);
 		}
 
+	}
+
+	private void UpdatingData(HttpServletRequest request, MovieDaoJDBC movieDao) {
+		String movieTitle = request.getParameter("movieTitleForm");
+		String movieAsessmentParam = request.getParameter("Asessment");
+
+		Integer movieAsessment = Integer.parseInt(movieAsessmentParam);
+
+		Movie movie = new Movie();
+
+		movie.setTitle(movieTitle);
+		movie.addAsessment(movieAsessment);
+
+		movieDao.UpdateMovie(movie);
+	}
+
+	private List<Movie> InstantiatingObjectAndSearching(HttpServletRequest request, MovieDaoJDBC movieDao) {
+		String movieTitleSearch = request.getParameter("movieTitleSearch");
+		String movieDirectorSearch = request.getParameter("movieDirectorSearch");
+		String movieAssessmentParam = request.getParameter("movieAssessment");
+
+		Double movieAssessment = 0.0;
+
+		if (movieAssessmentParam != null && !movieAssessmentParam.isEmpty()) {
+			movieAssessment = Double.parseDouble(movieAssessmentParam);
+
+		} else {
+			movieAssessment = 0.0;
+		}
+
+		Movie movie = new Movie();
+
+		movie.setTitle(movieTitleSearch);
+		movie.setDirector(movieDirectorSearch);
+		movie.setAssessment(movieAssessment);
+
+		List<Movie> movies = new ArrayList<>();
+
+		List<Movie> listMovies = null;
+
+		try {
+		
+			listMovies = movieDao.ListMoviesSearch(movies, movie);
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
+		return listMovies;
+	}
+
+	private void InstantiatingAndInsertingData(HttpServletRequest request, MovieDaoJDBC movieDao) {
+		String movieTitle = request.getParameter("movieTitle");
+		String movieDirector = request.getParameter("movieDirector");
+		String movieGenre = request.getParameter("movieGenre");
+		Movie movie = new Movie(movieTitle, movieDirector, movieGenre);
+		try {
+			movieDao.InsertData(movie);
+		} catch (SQLException e) {
+
+			e.printStackTrace();
+		}
 	}
 }

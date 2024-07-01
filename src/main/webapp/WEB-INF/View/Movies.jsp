@@ -29,7 +29,7 @@
     </form>
     <br>
     <% } %>
-    <form action="/Final_ProjectPWE/RedirectServlet" class="login-form" method="get" Style="display: inline-block";>
+    <form action="/Final_ProjectPWE/RedirectServlet" class="login-form" method="get" Style="display: inline-block">
     <input type="hidden" name="action" value="LogOut">
         <button type="submit">Deslogar</button>
     </form>

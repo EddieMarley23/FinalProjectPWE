@@ -1,6 +1,6 @@
 package entities;
 
-import java.text.DecimalFormat;
+
 
 public class Movie {
 

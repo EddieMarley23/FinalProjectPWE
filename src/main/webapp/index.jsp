@@ -20,11 +20,11 @@
             <input type="password" id="password" name="password" required>
         </div>
         <div class = "form-group">
-        <button type="submit"> Enviar</button>
+        <button type="submit"> Fazer Login</button>
         </div>
     </form>
 
-    <form action="/webapp" method="post" class="login-form">
+    <form action="/Final_ProjectPWE/UsuarioServlet" method="post" class="login-form">
     <div class = "form-group">
         <input type="hidden" name="action" value="directToAdmin">
         <button type="submit">Login Admin</button>

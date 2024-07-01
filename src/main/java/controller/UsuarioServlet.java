@@ -65,12 +65,12 @@ public class UsuarioServlet extends HttpServlet {
 
 			try {
 				userDao.InsertData(user);
-				
+
 			} catch (SQLException e) {
 
 				e.printStackTrace();
 			}
-			
+
 			response.sendRedirect("index.jsp");
 
 		}
